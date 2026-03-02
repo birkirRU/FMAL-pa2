@@ -106,4 +106,24 @@
 
 
 
+; Split 
+
+
+
+(define (split fun lis) 
+  (_split fun lis '() '() )
+)
+
+(define (_split fun lis flis tlis) 
+  (cond 
+    ((null? lis) (list tlis flis) )
+    ((eqv? (fun (car lis) ) #t)  (_split fun (cdr lis) flis (cons (car lis) tlis)) )
+    (else (_split fun (cdr lis) (cons (car lis) flis) tlis))
+  )
+)
+
+
+
+(split even? '(1 2 3 4 5 6))
+(split (lambda(x) (> x 2)) '(1 2 3 4 5 6))
 
