@@ -26,6 +26,19 @@
 )
 
 
+; selection-sort
+(define (selection-sort lis)
+  (cond
+    ((null? lis) '())
+    (else
+      (let ((min (select-min lis)))
+        (cons min (selection-sort (delete-elem min lis))
+        )
+      )
+    )
+  )
+)
+
 ;(delete-elem 0 '(1 2 3 4))
 
 ;(select-min '(7 3 1 5 9 3))
