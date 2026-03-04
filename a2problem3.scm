@@ -3,7 +3,7 @@
 ; 3. delete-elem, deletes first element from list of occurence elem
 
 
-
+; delete-elem
 (define (delete-elem elem lis)
   (cond
     ((null? lis) '() )
@@ -12,7 +12,23 @@
   )
 )
 
-(delete-elem 0 '(1 2 3 4))
+; select-min
+(define (select-min lis)
+  (if (null? (cdr lis))
+    (car lis)
+    (let ((tail-min (select-min (cdr lis ))))
+      (if (< (car lis) tail-min)
+        (car lis)
+        tail-min
+      )
+    )
+  )
+)
+
+
+;(delete-elem 0 '(1 2 3 4))
+
+;(select-min '(7 3 1 5 9 3))
 
 ;(delete-elem 3 '(1 2 3 4 3 3))
 
