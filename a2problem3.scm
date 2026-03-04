@@ -1,9 +1,4 @@
-
-; Selection Sort
-; 3. delete-elem, deletes first element from list of occurence elem
-
-
-; delete-elem
+; 3a delete-elem
 (define (delete-elem elem lis)
   (cond
     ((null? lis) '() )
@@ -12,7 +7,7 @@
   )
 )
 
-; select-min
+; 3b select-min
 (define (select-min lis)
   (if (null? (cdr lis))
     (car lis)
@@ -26,7 +21,7 @@
 )
 
 
-; selection-sort
+; 3c selection-sort
 (define (selection-sort lis)
   (cond
     ((null? lis) '())
@@ -39,10 +34,38 @@
   )
 )
 
-;(delete-elem 0 '(1 2 3 4))
 
-;(select-min '(7 3 1 5 9 3))
+; 4 stack 
+(define (make-stack stack)
+  (lambda (command . args)
+    (cond
+      ((eq? command 'empty) (null? stack))
 
-;(delete-elem 3 '(1 2 3 4 3 3))
+
+      ((eq? command 'top) 
+        (if (null? stack)
+          'error
+          (car stack)))
 
 
+
+      ((eq? command 'push) 
+        (if (null? args)
+           'error
+           (begin
+            (set! stack (cons (car args) stack))
+              (car stack))))
+
+
+
+      ((eq? command 'pop) 
+        (if (null? stack)
+          'error
+          (let ((x (car stack)))
+            (set! stack (cdr stack))
+            x)))
+
+
+
+      (else 'error)
+)))
